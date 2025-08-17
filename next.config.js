@@ -18,7 +18,14 @@ const nextConfig = {
           protocol: url.protocol.replace(':', ''),
         }
       }),
+       {
+        protocol: 'http',
+        hostname: '46.202.159.28',
+        port: '3001', // ważne, jeśli serwujesz z portu
+        pathname: '/api/media/**',
+      },
     ],
+    
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
