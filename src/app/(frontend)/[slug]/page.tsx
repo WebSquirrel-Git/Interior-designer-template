@@ -71,7 +71,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
-<div className='w-full h-screen bg-red-700'>123</div>
+
       <RenderBlocks blocks={layout} />
     </article>
   )

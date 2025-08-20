@@ -148,7 +148,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   title: string;
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | Hero)[];
   meta?: {
     title?: string | null;
     /**
@@ -694,6 +694,18 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero".
+ */
+export interface Hero {
+  header?: string | null;
+  subheader?: string | null;
+  backgroundImage?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -961,6 +973,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        heroBlock?: T | HeroSelect<T>;
       };
   meta?:
     | T
@@ -1057,6 +1070,17 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero_select".
+ */
+export interface HeroSelect<T extends boolean = true> {
+  header?: T;
+  subheader?: T;
+  backgroundImage?: T;
   id?: T;
   blockName?: T;
 }

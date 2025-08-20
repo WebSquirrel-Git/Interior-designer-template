@@ -3,11 +3,7 @@ import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-
 import type { Header } from '@/payload-types'
-
-import { Logo } from '@/components/Logo/Logo'
-import { HeaderNav } from './Nav'
 import LogoSM from 'public/assets/logo/logo-sm.svg'
 import Image from 'next/image'
 import { NavList } from './NavList/NavList'
@@ -33,13 +29,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="flex flex-row justify-between items-center absolute left-0 top-0 px-[50px] py-[25px] bg-background bg-opacity-20 w-full">
+    <header className="flex flex-row justify-between items-center z-30 absolute left-0 top-0 lg:px-[50px] sm:px-[24px] px-4 py-[25px] bg-background bg-opacity-20 w-full">
         <Link href="/">
           {/* <Logo loading="eager" priority="high" className="invert dark:invert-0" /> */}
           <Image src={LogoSM} alt='interior designer' className='h-[64px]'/>
         </Link>
         <NavList data={data}/>
-        <div className='flex flex-row gap-[10px]'>
+        <div className='xl:flex hidden flex-row gap-[10px]'>
           <ButtonLinkRounded type='link' url='/' label='Zarezerwuj spotkanie'/>
           <ButtonLinkRounded type='phone' telephone={555666777} label='+48 555 666 777'/>
         </div>
