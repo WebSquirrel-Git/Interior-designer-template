@@ -8,7 +8,10 @@ import type { Header } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
-
+import LogoSM from 'public/assets/logo/logo-sm.svg'
+import Image from 'next/image'
+import { NavList } from './NavList/NavList'
+import { ButtonLinkRounded } from '@/components/ui/buttons/ButtonLinkRounded'
 interface HeaderClientProps {
   data: Header
 }
@@ -30,13 +33,17 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
+    <header className="flex flex-row justify-between items-center absolute left-0 top-0 px-[50px] py-[25px] bg-background bg-opacity-20 w-full">
         <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+          {/* <Logo loading="eager" priority="high" className="invert dark:invert-0" /> */}
+          <Image src={LogoSM} alt='interior designer' className='h-[64px]'/>
         </Link>
-        <HeaderNav data={data} />
-      </div>
+        <NavList data={data}/>
+        <div className='flex flex-row gap-[10px]'>
+          <ButtonLinkRounded type='link' url='/' label='Zarezerwuj spotkanie'/>
+          <ButtonLinkRounded type='phone' telephone={555666777} label='+48 555 666 777'/>
+        </div>
+        {/* <HeaderNav data={data} /> */}
     </header>
   )
 }

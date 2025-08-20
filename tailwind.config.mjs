@@ -57,10 +57,11 @@ const config = {
       },
       colors: {
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
+          DEFAULT: '#EAD08D',
           foreground: 'hsl(var(--accent-foreground))',
         },
-        background: 'hsl(var(--background))',
+        basic:'#FFFFFF',
+        background: '#000000',
         border: 'hsla(var(--border))',
         card: {
           DEFAULT: 'hsl(var(--card))',

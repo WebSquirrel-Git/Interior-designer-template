@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('./inter/Inter-Regular.woff2') format('woff2');
+  font-weight: 100 900; /* Zakres wagi dla fontu zmiennego */
+  font-optical-sizing: auto; /* Automatyczne dostosowanie rozmiaru optycznego */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter-Italic';
+  src: url('./inter/Inter-Italic.woff2') format('woff2');
+  font-weight: 100 900; /* Zakres wagi dla fontu zmiennego */
+  font-optical-sizing: auto; /* Automatyczne dostosowanie rozmiaru optycznego */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('./roboto/Roboto-VariableFont_wdth\,wght.woff2') format('woff2');
+  font-weight: 100 900; /* Zakres wagi dla fontu zmiennego */
+  font-optical-sizing: auto; /* Automatyczne dostosowanie rozmiaru optycznego */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto-Italic';
+  src: url('./roboto/Roboto-Italic-VariableFont_wdth\,wght.woff2') format('woff2');
+  font-weight: 100 900; /* Zakres wagi dla fontu zmiennego */
+  font-optical-sizing: auto; /* Automatyczne dostosowanie rozmiaru optycznego */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./montserrat/Montserrat-VariableFont_wght.woff2') format('woff2');
+  font-weight: 100 900; /* Zakres wagi dla fontu zmiennego */
+  font-optical-sizing: auto; /* Automatyczne dostosowanie rozmiaru optycznego */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat-Italic';
+  src: url('./montserrat/Montserrat-Italic-VariableFont_wght.woff2') format('woff2');
+  font-weight: 100 900; /* Zakres wagi dla fontu zmiennego */
+  font-optical-sizing: auto; /* Automatyczne dostosowanie rozmiaru optycznego */
+  font-display: swap;
+}
+
