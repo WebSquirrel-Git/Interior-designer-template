@@ -1,51 +1,45 @@
 'use client'
 import { ButtonLinkText } from '@/components/ui/buttons/ButtonLinkText'
-import { StaticImageData } from 'next/image'
-import OffertImg1 from 'public/assets/temporary/offert1.jpg'
-import OffertImg2 from 'public/assets/temporary/offert2.jpg'
-import OffertImg3 from 'public/assets/temporary/offert3.jpg'
-import OffertImg4 from 'public/assets/temporary/offert4.jpg'
-const Offert = 
-    {
-        header:'Projekt koncepcyjny',
-        description:['To idealne rozwiązanie dla osób, które chcą poznać potencjał swojego wnętrza i zobaczyć różne możliwości aranżacji.',
-            'W ramach projektu przygotowujemy układ funkcjonalny pomieszczeń, moodboardy oraz propozycje materiałów i kolorystyki. Dzięki temu zyskujesz jasną wizję tego, jak Twoja przestrzeń może wyglądać w praktyce.',
-            'To świetny wybór na początek, jeśli nie planujesz od razu pełnej realizacji, a potrzebujesz inspiracji i kierunku działań.',
-            'Projekt koncepcyjny daje solidną bazę do dalszej pracy nad wnętrzem, także we własnym zakresie. Dzięki niemu unikniesz błędów przy zakupach i oszczędzisz czas na etapie urządzania.'
-        ],
-        button:{
-            label:'Umów się na spotkanie',
-            url:'/'
-        },
-        images:[OffertImg1,OffertImg2,OffertImg3,OffertImg4]
-    }
-
+import Image from 'next/image'
+import { SliderComponent } from './Slider'
+import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 interface OffertBlockProps{
-    
-    header:string,
+    offert:{
+  header:string,
     description:string[],
-    button:{
-        label:string,
-        url:string
-    },
-    images:StaticImageData[]
+    images:{
+    url:string;
+    updatedAt:string;
+    alt:string;
+    width:number;
+    height:number;
+  }[]
+    }
+  
 }
 
-export const OffertBlock=()=>{
+export const OffertBlock=({offert}:OffertBlockProps)=>{
+ const imagesToUrl = offert.images.map(image=>{
+return getMediaUrl(image.url, image.updatedAt)
 
-
-    return <div className='lg:px-28 sm:px-12 px-4 py-[100px] flex flex-col items-start justify-start'>
-       <h2 className='py-[15px] text-accentDark'>{Offert.header}</h2>
-       <div className='flex flex-row md:py-[38px] sm:px-0 p-4 pl-0'>
-        <div className='flex flex-col gap-12 w-[30%]'>
-            <div className='flex flex-col gap-6'>
-                {Offert.description.map((paragraph,i)=><p key={i} className='py-2 border-b-[1px] border-accent'>
-{paragraph}
-                </p>)}
+})
+    return <div className='lg:px-28 sm:px-12  py-[50px] flex flex-col items-start justify-start'>
+       <h2 className='py-[15px] sm:px-0 px-4 text-accentDark'>{offert.header}</h2>
+       <div className='flex lg:flex-row flex-col md:py-[38px] sm:px-0 p-4 pl-0 sm:pr-4 pr-0 justify-between lg:items-end items-start gap-6'>
+        <div className='flex flex-col gap-12 2xl:w-[30%] lg:w-[50%] sm:w-[75%] w-full 2xl:justify-start justify-between sm:items-start items-center'>
+             
+            <div className='z-10 flex flex-col sm:gap-6 gap-0 relative'>
+                <Image src={imagesToUrl[0]} alt='background' className='sm:hidden block z-0 absolute shrink-0 left-0 top-0 object-cover' fill/>
+                {offert.description.map((paragraph,i)=><span key={i} className='flex flex-row items-center gap-3 justify-start sm:px-0 px-4   sm:bg-transparent bg-[rgba(0,0,0,0.75)] z-10'>
+<span className='sm:hidden block text-[24px] w-[32px] shrink-0 font-bold text-accent'>{`0${i+1}`}</span><p className='sm:py-2 py-4 border-b-[1px] border-accent'>{paragraph}</p>
+                </span>)}
                 
             </div>
-            <ButtonLinkText label={Offert.button.label} url={Offert.button.url}/>
+            <ButtonLinkText label='Umów się na spotkanie' url='/'/>
+        </div>
+        <div className='sm:block hidden ml-auto 2xl:max-w-[700px] 2xl:w-[700px] 2xl:h-[50vh] lg:max-w-[400px] lg:w-[400px] lg:h-[70vh] max-w-[550px] w-[550px] h-[60vh]'>
+       <SliderComponent images={offert.images}/>
         </div>
        </div>
     </div>

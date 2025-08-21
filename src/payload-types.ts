@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    offerts: Offert;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -88,6 +89,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    offerts: OffertsSelect<false> | OffertsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -148,7 +150,16 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   title: string;
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | Hero)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | Hero
+    | OfertaPojedynczaUsluga
+    | OfertaStronaGlowna
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -706,6 +717,40 @@ export interface Hero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Oferta - pojedyńcza usługa".
+ */
+export interface OfertaPojedynczaUsluga {
+  offert: number | Offert;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'offertBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "offerts".
+ */
+export interface Offert {
+  id: number;
+  header: string;
+  shortDescription?: string | null;
+  description: string[];
+  images?: (number | Media)[] | null;
+  backgroundImage?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Oferta - strona główna".
+ */
+export interface OfertaStronaGlowna {
+  offerts: (number | Offert)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'offertHomePageBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -898,6 +943,10 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'offerts';
+        value: number | Offert;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -974,6 +1023,8 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         heroBlock?: T | HeroSelect<T>;
+        offertBlock?: T | OfertaPojedynczaUslugaSelect;
+        offertHomePageBlock?: T | OfertaStronaGlownaSelect;
       };
   meta?:
     | T
@@ -1083,6 +1134,24 @@ export interface HeroSelect<T extends boolean = true> {
   backgroundImage?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Oferta - pojedyńcza usługa_select".
+ */
+export interface OfertaPojedynczaUslugaSelect {
+  offert?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Oferta - strona główna_select".
+ */
+export interface OfertaStronaGlownaSelect {
+  offerts?: boolean;
+  id?: boolean;
+  blockName?: boolean;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1251,6 +1320,19 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "offerts_select".
+ */
+export interface OffertsSelect<T extends boolean = true> {
+  header?: T;
+  shortDescription?: T;
+  description?: T;
+  images?: T;
+  backgroundImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

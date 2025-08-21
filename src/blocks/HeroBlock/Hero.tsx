@@ -24,7 +24,7 @@ export const HeroBlock = ({header,subheader,backgroundImage}:HeroBlockProps) =>{
 
     return <div className='w-full h-screen bg-red-700 relative'>
       <div className="absolute inset-0 bg-black/60 z-10" />
-      <div className='absolute inset-0 z-20 flex flex-col sm:py-[20vh] pt-[20vh] pb-[50px] lg:px-28 sm:px-12 px-4 gap-8 items-start justify-end' style={{background:'linear-gradient(180deg,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%);'}}>
+      <div className='absolute inset-0 z-20 flex flex-col sm:py-[20vh] pt-[20vh] pb-[50px] lg:px-28 sm:px-12 px-4 gap-8 items-start justify-end' style={{background: 'linear-gradient(180deg,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%)'}}>
         <div className='flex flex-col gap-[16px] xl:w-[800px] sm:w-[400px] w-auto'>
     <h1 className=' font-medium'>{header}</h1>
     <p className='xl:text-[20px] sm:text-[16px] text-[14px] font-medium'>{subheader}</p>

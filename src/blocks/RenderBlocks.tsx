@@ -8,14 +8,17 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { HeroBlock } from '@/blocks/HeroBlock/Hero'
-
+import { OffertBlock } from './Offert/OffertBlock/Component'
+import { OffertHomePageBlock } from './Offert/OffertHomePageBlock/Component'
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
-  heroBlock: HeroBlock
+  heroBlock: HeroBlock,
+  offertBlock:OffertBlock,
+  offertHomePageBlock:OffertHomePageBlock
 }
 
 export const RenderBlocks: React.FC<{
