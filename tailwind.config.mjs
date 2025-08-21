@@ -60,6 +60,7 @@ const config = {
           DEFAULT: '#EAD08D',
           foreground: 'hsl(var(--accent-foreground))',
         },
+        accentDark:'rgba(234,208,141,0.7)',
         basic:'#FFFFFF',
         background: '#000000',
         border: 'hsla(var(--border))',

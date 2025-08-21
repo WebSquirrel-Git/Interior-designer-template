@@ -11,6 +11,8 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { OffertHomePageBlock } from '@/blocks/Offert/OffertHomePageBlock/Component'
+import { OffertBlock } from '@/blocks/Offert/OffertBlock/Component'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -73,6 +75,8 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <RenderBlocks blocks={layout} />
+      <OffertHomePageBlock/>
+      <OffertBlock/>
     </article>
   )
 }
