@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     users: User;
     offerts: Offert;
+    realizations: Realization;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -90,6 +91,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     offerts: OffertsSelect<false> | OffertsSelect<true>;
+    realizations: RealizationsSelect<false> | RealizationsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -751,6 +753,30 @@ export interface OfertaStronaGlowna {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realizations".
+ */
+export interface Realization {
+  id: number;
+  header: string;
+  subheader: string;
+  backgroundImage?: (number | null) | Media;
+  surface?: number | null;
+  style?: string | null;
+  localization?: string | null;
+  year?: number | null;
+  description: string;
+  slug: string;
+  images?:
+    | {
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -945,6 +971,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'offerts';
         value: number | Offert;
+      } | null)
+    | ({
+        relationTo: 'realizations';
+        value: number | Realization;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1331,6 +1361,29 @@ export interface OffertsSelect<T extends boolean = true> {
   description?: T;
   images?: T;
   backgroundImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realizations_select".
+ */
+export interface RealizationsSelect<T extends boolean = true> {
+  header?: T;
+  subheader?: T;
+  backgroundImage?: T;
+  surface?: T;
+  style?: T;
+  localization?: T;
+  year?: T;
+  description?: T;
+  slug?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

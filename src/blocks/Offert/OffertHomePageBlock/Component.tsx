@@ -1,26 +1,15 @@
 'use client'
 
 import { OffertShowCaseItem } from '@/components/Offert/OffertShowCaseItem'
+import { Media } from '@/payload-types';
 
 
 interface OfferHomePageBlockProps{
     offerts:{
   header:string,
     shortDescription:string,
-    images:{
-    url:string;
-    updatedAt:string;
-    alt:string;
-    width:number;
-    height:number;
-  }[],
-  backgroundImage:{
-    url:string;
-    updatedAt:string;
-    alt:string;
-    width:number;
-    height:number;
-  }
+    images:Media[],
+  backgroundImage:Media
     }[]
   
 }

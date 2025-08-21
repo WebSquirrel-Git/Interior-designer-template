@@ -4,23 +4,16 @@ import { ButtonLinkRounded } from '@/components/ui/buttons/ButtonLinkRounded'
 import { ButtonLinkText } from '@/components/ui/buttons/ButtonLinkText'
 import Image from 'next/image'
 import LogoSM from 'public/assets/logo/logo-sm.svg'
-import { getMediaUrl } from '@/utilities/getMediaUrl'
+import { CustomImage } from '@/components/CustomImage/CustomImage'
+import { Media } from '@/payload-types'
 
 export interface HeroBlockProps{
     header:string,
     subheader:string,
-    backgroundImage:{
-    url:string;
-    updatedAt:string;
-    alt:string;
-    width:number;
-    height:number;
-  }
+    backgroundImage:Media
 }
 
 export const HeroBlock = ({header,subheader,backgroundImage}:HeroBlockProps) =>{
-
-    const backgroundImageSrc = getMediaUrl(backgroundImage.url, backgroundImage.updatedAt)
 
     return <div className='w-full h-screen bg-red-700 relative'>
       <div className="absolute inset-0 bg-black/60 z-10" />
@@ -38,6 +31,7 @@ export const HeroBlock = ({header,subheader,backgroundImage}:HeroBlockProps) =>{
         <Image src={LogoSM} alt='logo' width={160}/>
         </div>
       </div>
-      <Image src={backgroundImageSrc} alt='bg' fill className='object-cover'/>
+      <CustomImage media={backgroundImage} size='xlarge' fill className='object-cover'/>
+     
     </div>
 }
