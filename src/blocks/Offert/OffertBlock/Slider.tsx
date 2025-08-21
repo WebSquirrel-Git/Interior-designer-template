@@ -3,20 +3,11 @@ import React from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image from 'next/image';
-import { getMediaUrl } from '@/utilities/getMediaUrl';
+import { Media } from '@/payload-types';
+import { CustomImage } from '@/components/CustomImage/CustomImage';
 
-export const SliderComponent:React.FC<{images:{
-    url:string;
-    updatedAt:string;
-    alt:string;
-    width:number;
-    height:number;
-  }[]}>=({images})=>{
-     const imagesToUrl = images.map(image=>{
-    return getMediaUrl(image.url, image.updatedAt)
-    
-    })
+export const SliderComponent:React.FC<{images:Media[]}>=({images})=>{
+   
  const settings = {
     dots: false,
     infinite: true,
@@ -38,6 +29,9 @@ export const SliderComponent:React.FC<{images:{
   ],
   };
     return  <Slider {...settings}>
-            {imagesToUrl.map((image,i)=><Image src={image} width={300} height={600} key={i} alt='image' className='2xl:h-[50vh] lg:h-[70vh] h-[60vh] 2xl:px-6 w-auto px-1 object-cover'/>)}
+            {images.map((image,i)=>
+            <CustomImage media={image} size='medium' key={i} className='2xl:h-[50vh] lg:h-[70vh] h-[60vh] 2xl:px-6 w-auto px-1 object-cover'/>
+  
+          )}
         </Slider>
 }
