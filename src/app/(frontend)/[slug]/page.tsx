@@ -11,7 +11,6 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { RealizationsBlock } from '@/blocks/RealizationsBlock/Component'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -74,7 +73,6 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <RenderBlocks blocks={layout} />
-      <RealizationsBlock/>
     </article>
   )
 }

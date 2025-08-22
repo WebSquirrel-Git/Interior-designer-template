@@ -161,6 +161,7 @@ export interface Page {
     | Hero
     | OfertaPojedynczaUsluga
     | OfertaStronaGlowna
+    | RealizacjePrzyklady
   )[];
   meta?: {
     title?: string | null;
@@ -753,13 +754,25 @@ export interface OfertaStronaGlowna {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Realizacje przykłady".
+ */
+export interface RealizacjePrzyklady {
+  backgroundImage?: (number | null) | Media;
+  header: string;
+  realizations: (number | Realization)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'realizationsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "realizations".
  */
 export interface Realization {
   id: number;
   header: string;
   subheader: string;
-  backgroundImage?: (number | null) | Media;
+  backgroundImage: number | Media;
   surface?: number | null;
   style?: string | null;
   localization?: string | null;
@@ -1055,6 +1068,7 @@ export interface PagesSelect<T extends boolean = true> {
         heroBlock?: T | HeroSelect<T>;
         offertBlock?: T | OfertaPojedynczaUslugaSelect;
         offertHomePageBlock?: T | OfertaStronaGlownaSelect;
+        realizationsBlock?: T | RealizacjePrzykladySelect;
       };
   meta?:
     | T
@@ -1180,6 +1194,17 @@ export interface OfertaPojedynczaUslugaSelect {
  */
 export interface OfertaStronaGlownaSelect {
   offerts?: boolean;
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Realizacje przykłady_select".
+ */
+export interface RealizacjePrzykladySelect {
+  backgroundImage?: boolean;
+  header?: boolean;
+  realizations?: boolean;
   id?: boolean;
   blockName?: boolean;
 }
