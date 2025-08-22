@@ -19,7 +19,7 @@ export const OffertShowCaseItem=({images,backgroundImage,header,shortDescription
     <div className='z-10 absolute shrink-0 left-0 top-0 w-full h-full' style={{background:'linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%)'}}></div>
     <div className='flex flex-col gap-10 justify-between md:w-auto w-full z-20 lg:min-h-[550px] '>
         <div className='flex flex-col gap-4 md:w-min w-full'>
-            <h3 className='font-semibold whitespace-nowrap' style={{background:'linear-gradient(90deg,rgba(234, 208, 141, 1) 0%, rgba(255, 255, 255, 1) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;'}}>{header}</h3>
+            <h3 className='font-semibold whitespace-nowrap' style={{background:'linear-gradient(90deg,rgba(234, 208, 141, 1) 0%, rgba(255, 255, 255, 1) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent'}}>{header}</h3>
             <p>{shortDescription}</p>
         </div>
         <ButtonLinkText label='Dowiedz się więcej' url='/'/>

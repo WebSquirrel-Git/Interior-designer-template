@@ -13,7 +13,7 @@ import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
 import { OffertBlock } from '@/blocks/Offert/OffertBlock/config'
 import { OffertHomePageBlock } from '@/blocks/Offert/OffertHomePageBlock/config'
-
+import { RealizationsBlock } from '@/blocks/RealizationsBlock/config'
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -73,7 +73,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock,HeroBlock,OffertBlock,OffertHomePageBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock,HeroBlock,OffertBlock,OffertHomePageBlock,RealizationsBlock],
               required: true,
               admin: {
                 initCollapsed: true,

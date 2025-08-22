@@ -24,6 +24,7 @@ export const Realizations: CollectionConfig = {
       label: 'Zdjęcie w tle',
       type: 'upload',
       relationTo: 'media',
+      required:true
     },
     {
       name: 'surface',
