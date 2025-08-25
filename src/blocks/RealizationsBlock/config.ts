@@ -4,6 +4,10 @@ import { Block } from 'payload';
 export const RealizationsBlock: Block = {
   slug: 'realizationsBlock',
   interfaceName: 'Realizacje przykłady',
+   labels:{
+    singular:'Realizacje',
+    plural:'Realizacje',
+  },
   fields: [
      {
       name: 'backgroundImage',

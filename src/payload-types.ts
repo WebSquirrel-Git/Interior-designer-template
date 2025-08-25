@@ -74,6 +74,8 @@ export interface Config {
     users: User;
     offerts: Offert;
     realizations: Realization;
+    reviews: Review;
+    informations: Information;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -92,6 +94,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     offerts: OffertsSelect<false> | OffertsSelect<true>;
     realizations: RealizationsSelect<false> | RealizationsSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    informations: InformationsSelect<false> | InformationsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -162,6 +166,7 @@ export interface Page {
     | OfertaPojedynczaUsluga
     | OfertaStronaGlowna
     | RealizacjePrzyklady
+    | Opinie
   )[];
   meta?: {
     title?: string | null;
@@ -790,6 +795,47 @@ export interface Realization {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Opinie".
+ */
+export interface Opinie {
+  reviews: (number | Review)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'reviewsShowcaseBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: number;
+  name: string;
+  realizationName: string;
+  stars: number;
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "informations".
+ */
+export interface Information {
+  id: number;
+  company: string;
+  adress?: string | null;
+  nip: string;
+  regon: string;
+  email: string;
+  phone: string;
+  facebook?: string | null;
+  instagram?: string | null;
+  behance?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -990,6 +1036,14 @@ export interface PayloadLockedDocument {
         value: number | Realization;
       } | null)
     | ({
+        relationTo: 'reviews';
+        value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'informations';
+        value: number | Information;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1069,6 +1123,7 @@ export interface PagesSelect<T extends boolean = true> {
         offertBlock?: T | OfertaPojedynczaUslugaSelect;
         offertHomePageBlock?: T | OfertaStronaGlownaSelect;
         realizationsBlock?: T | RealizacjePrzykladySelect;
+        reviewsShowcaseBlock?: T | OpinieSelect<T>;
       };
   meta?:
     | T
@@ -1207,6 +1262,15 @@ export interface RealizacjePrzykladySelect {
   realizations?: boolean;
   id?: boolean;
   blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Opinie_select".
+ */
+export interface OpinieSelect<T extends boolean = true> {
+  reviews?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1409,6 +1473,35 @@ export interface RealizationsSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  name?: T;
+  realizationName?: T;
+  stars?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "informations_select".
+ */
+export interface InformationsSelect<T extends boolean = true> {
+  company?: T;
+  adress?: T;
+  nip?: T;
+  regon?: T;
+  email?: T;
+  phone?: T;
+  facebook?: T;
+  instagram?: T;
+  behance?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1693,6 +1786,7 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  informations: number | Information;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1722,6 +1816,7 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  informations: number | Information;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1744,6 +1839,7 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  informations?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1767,6 +1863,7 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  informations?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

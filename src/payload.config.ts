@@ -6,8 +6,10 @@ import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 import {Offerts} from './collections/Offerts'
+import { Informations } from './collections/Informations'
 import { Realizations } from './collections/Realizations'
 import { Categories } from './collections/Categories'
+import { Reviews } from './collections/Reviews'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
@@ -65,7 +67,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users,Offerts,Realizations],
+  collections: [Pages, Posts, Media, Categories, Users,Offerts,Realizations,Reviews,Informations],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

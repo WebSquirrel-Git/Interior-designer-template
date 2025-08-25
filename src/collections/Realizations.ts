@@ -1,7 +1,15 @@
+import { anyone } from '@/access/anyone'
+import { authenticated } from '@/access/authenticated'
 import { CollectionConfig } from 'payload'
 
 export const Realizations: CollectionConfig = {
   slug: 'realizations',
+    access: {
+            create: authenticated,
+            delete: authenticated,
+            read: anyone,
+            update: authenticated,
+          },
   labels: {
     singular: 'Realizacja',
     plural: 'Realizacje',

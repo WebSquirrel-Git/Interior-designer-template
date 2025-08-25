@@ -8,6 +8,8 @@ import LogoSM from 'public/assets/logo/logo-sm.svg'
 import Image from 'next/image'
 import { NavList } from './NavList/NavList'
 import { ButtonLinkRounded } from '@/components/ui/buttons/ButtonLinkRounded'
+import MenuIcon from 'public/assets/icons/menu.svg'
+import { NavListMobile } from './NavList/NavListMobile'
 interface HeaderClientProps {
   data: Header
 }
@@ -17,6 +19,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
+const [showMenu,setShowMenu] = useState(false);
+
+const onShowMenu = ()=>{
+  setShowMenu(true)
+}
+const onHideMenu=()=>{
+  setShowMenu(false)
+}
 
   useEffect(() => {
     setHeaderTheme(null)
@@ -29,9 +39,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="flex flex-row justify-between items-center z-30 absolute left-0 top-0 lg:px-[50px] sm:px-[24px] px-4 py-[25px] bg-background bg-opacity-20 w-full">
+    <header className="flex flex-row justify-between items-center z-40 absolute left-0 top-0 lg:px-[50px] sm:px-[24px] px-4 py-[25px] lg:bg-background lg:bg-opacity-20 w-full">
         <Link href="/">
-          {/* <Logo loading="eager" priority="high" className="invert dark:invert-0" /> */}
           <Image src={LogoSM} alt='interior designer' className='h-[64px]'/>
         </Link>
         <NavList data={data}/>
@@ -39,7 +48,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <ButtonLinkRounded type='link' url='/' label='Zarezerwuj spotkanie'/>
           <ButtonLinkRounded type='phone' telephone={555666777} label='+48 555 666 777'/>
         </div>
-        {/* <HeaderNav data={data} /> */}
+        <button className={`lg:hidden z-40 fixed ${showMenu?'hidden':'flex'} right-4 top-4  items-center justify-center bg-accent w-[64px] h-[64px]`} onClick={onShowMenu}>
+          <Image src={MenuIcon} alt='menu' width={40} height={40}/>
+        </button>
+        <NavListMobile data={data} onHideMenu={onHideMenu} showMenu={showMenu}/>
     </header>
   )
 }
