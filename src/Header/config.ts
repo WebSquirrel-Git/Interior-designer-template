@@ -25,6 +25,14 @@ export const Header: GlobalConfig = {
         },
       },
     },
+    {
+      name: 'informations',
+      label: 'Informacje o firmie',
+      type: 'relationship',
+      relationTo: 'informations',
+      required: true,
+      hasMany:false
+    },
   ],
   hooks: {
     afterChange: [revalidateHeader],

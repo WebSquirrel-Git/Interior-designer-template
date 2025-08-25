@@ -19,6 +19,7 @@ export async function generateStaticParams() {
   const posts = await payload.find({
     collection: 'posts',
     draft: false,
+    depth:2,
     limit: 1000,
     overrideAccess: false,
     pagination: false,
@@ -89,6 +90,7 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
     collection: 'posts',
     draft,
     limit: 1,
+    depth:2,
     overrideAccess: draft,
     pagination: false,
     where: {

@@ -21,7 +21,6 @@ interface RealizationsBlockProps{
 }
 
 export const RealizationsBlock=({realizations,backgroundImage,header}:RealizationsBlockProps)=>{
-
     return <div className='relative lg:px-28 sm:px-12 px-4 py-[100px] flex flex-col items-center justify-start'> 
    <CustomImage media={backgroundImage} fill className='object-cover'/>
     <div className="absolute inset-0 bg-black/50 z-10"></div>

@@ -4,6 +4,10 @@ import { Block } from 'payload';
 export const HeroBlock: Block = {
   slug: 'heroBlock',
   interfaceName: 'Hero',
+  labels:{
+    singular:'Sekcja Hero',
+    plural:'Sekcja Hero',
+  },
   fields: [
     {
       name: 'header',

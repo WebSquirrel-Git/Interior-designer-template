@@ -162,3 +162,8 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+footer{
+  font-family: 'Montserrat';
+  font-weight: 400;
+}

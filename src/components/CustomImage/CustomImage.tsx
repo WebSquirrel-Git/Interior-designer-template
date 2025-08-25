@@ -23,7 +23,7 @@ export const CustomImage = ({
  if (!media || typeof media === "string") return null
 
    let img = size && media.sizes?.[size] ? media.sizes[size] : undefined
-      console.log(img)
+ 
  if (!img?.url) {
     img = media
   }

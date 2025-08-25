@@ -15,7 +15,6 @@ export interface RealizationCardProps{
 
 export const RealizationCard=({header,surface,style,year,slug,backgroundImage}:RealizationCardProps)=>{
 const link = '/realizacje/'+slug
-
     return <div className='relative sm:h-[380px] h-[450px] w-full border-accent border-[2px]'>
         <CustomImage media={backgroundImage} fill className='object-cover' size='medium'/>
         <Link href={link} className="absolute inset-0 bg-black/40 z-10 flex flex-col justify-between content-between cursor-pointer">
