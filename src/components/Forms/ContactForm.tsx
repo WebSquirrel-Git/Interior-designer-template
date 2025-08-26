@@ -5,6 +5,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import SendIcon from 'public/assets/icons/send-accent.svg'
 
 import Image from 'next/image';
+import { useState } from 'react';
 const schema = z.object({
   name: z.string().min(6, 'Minimalna długość wynosi 6 znaków'),
   telephone: z.string('niepoprawna wartość').min(9,'Numer telefonu powinien składać się z min 9 cyfr'),
@@ -18,10 +19,11 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 export const ContactForm=()=>{
+     const [status, setStatus] = useState('Wyślij wiadomość');
   const {
     register,
     handleSubmit,
-    setError,
+    setError,reset,
     formState: {errors},
   } = useForm<FormFields>({
     defaultValues: {
@@ -37,6 +39,7 @@ export const ContactForm=()=>{
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const {name,telephone,email,location,surface,message} = data
     try {
+        setStatus('Wysyłanie...')
         const res = await fetch('/api/contact', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -44,12 +47,18 @@ export const ContactForm=()=>{
   });
 
   if (!res.ok) {
+    setStatus('Błąd wysyłania')
     if (res.status === 401) {
       throw new Error('Wrong login or password');
     }
     throw new Error('Server error, try again later');
   }
-
+ setStatus('Wiadomość wysłana')
+  
+    setTimeout(()=>{
+        setStatus('Wyślij wiadomość');
+        reset();
+    },3000)
   return res.json();
 } catch (error) {
       console.log(error);
@@ -57,6 +66,7 @@ export const ContactForm=()=>{
         message: `${String(error).replace('Error:', '')}`,
       });
     }
+   
   };
     return <div className='flex flex-col gap-6 bg-black md:w-[750px] md:h-full w-full h-fit md:p-[50px] p-4 md:py-0 py-8 items-center sm:justify-center justify-start'>
               <h2 className='sm:text-[32px] text-[24px] w-full text-left text-accentDark'>Zarezerwuj spotkanie</h2>
@@ -136,7 +146,7 @@ export const ContactForm=()=>{
           type="submit"
           className="group hover:bg-accent hover:border-white transition-all duration-500 mt-4 sm:h-[48px] h-[42px] relative flex flex-row gap-[10px] pr-[60px] border-accent border-[2px] rounded-full"
         >
-              <span className='pl-4 py-[10px] text-[14px] font-semibold'>Wyślij zapytanie</span>
+              <span className='pl-4 py-[10px] text-[14px] font-semibold'>{status}</span>
                     <span className='group-hover:bg-white transition-all duration-500 absolute flex items-center justify-center right-[-3px] top-[-2px] sm:h-[48px] sm:w-[48px] h-[42px] w-[42px]  border-basic border-[2px] rounded-full'>
             <Image src={SendIcon} alt='call' width={24} height={24} className='sm:h-[24px] sm:w-[24px] h-[16px] w-[16px]'/>
                     </span>
