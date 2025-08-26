@@ -719,9 +719,29 @@ export interface Hero {
   header?: string | null;
   subheader?: string | null;
   backgroundImage?: (number | null) | Media;
+  informations: number | Information;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "informations".
+ */
+export interface Information {
+  id: number;
+  company: string;
+  town?: string | null;
+  street?: string | null;
+  nip: string;
+  regon: string;
+  email: string;
+  phone: string;
+  facebook?: string | null;
+  instagram?: string | null;
+  behance?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -813,24 +833,6 @@ export interface Review {
   realizationName: string;
   stars: number;
   description: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "informations".
- */
-export interface Information {
-  id: number;
-  company: string;
-  adress?: string | null;
-  nip: string;
-  regon: string;
-  email: string;
-  phone: string;
-  facebook?: string | null;
-  instagram?: string | null;
-  behance?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1231,6 +1233,7 @@ export interface HeroSelect<T extends boolean = true> {
   header?: T;
   subheader?: T;
   backgroundImage?: T;
+  informations?: T;
   id?: T;
   blockName?: T;
 }
@@ -1494,7 +1497,8 @@ export interface ReviewsSelect<T extends boolean = true> {
  */
 export interface InformationsSelect<T extends boolean = true> {
   company?: T;
-  adress?: T;
+  town?: T;
+  street?: T;
   nip?: T;
   regon?: T;
   email?: T;

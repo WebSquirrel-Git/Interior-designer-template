@@ -25,6 +25,14 @@ export const HeroBlock: Block = {
       type: 'upload',
       relationTo: 'media',
     },
+    {
+      name: 'informations',
+      label: 'Informacje o firmie',
+      type: 'relationship',
+      relationTo: 'informations',
+      required: true,
+      hasMany:false
+    },
   ],
   
 }

@@ -26,7 +26,7 @@ export const OffertBlock=({offert}:OffertBlockProps)=>{
                 </span>)}
                 
             </div>
-            <ButtonLinkText label='Umów się na spotkanie' url='/'/>
+            <ButtonLinkText label='Umów się na spotkanie' url='/kontakt'/>
         </div>
         <div className='sm:block hidden ml-auto 2xl:max-w-[700px] 2xl:w-[700px] 2xl:h-[50vh] lg:max-w-[400px] lg:w-[400px] lg:h-[70vh] max-w-[550px] w-[550px] h-[60vh]'>
        <SliderComponent images={offert.images}/>
