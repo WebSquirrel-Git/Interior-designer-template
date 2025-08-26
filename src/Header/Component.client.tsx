@@ -20,7 +20,6 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 const [showMenu,setShowMenu] = useState(false);
-
 const onShowMenu = ()=>{
   setShowMenu(true)
 }
@@ -45,8 +44,8 @@ const onHideMenu=()=>{
         </Link>
         <NavList data={data}/>
         <div className='xl:flex hidden flex-row gap-[10px]'>
-          <ButtonLinkRounded type='link' url='/' label='Zarezerwuj spotkanie'/>
-          <ButtonLinkRounded type='phone' telephone={555666777} label='+48 555 666 777'/>
+          <ButtonLinkRounded type='link' url='/kontakt' label='Zarezerwuj spotkanie'/>
+          {typeof data.informations !== 'number' && data.informations?.phone &&<ButtonLinkRounded type='phone' telephone={Number(data.informations.phone)} label={data.informations.phone}/>}
         </div>
         <button className={`lg:hidden z-40 fixed ${showMenu?'hidden':'flex'} right-4 top-4  items-center justify-center bg-accent w-[64px] h-[64px]`} onClick={onShowMenu}>
           <Image src={MenuIcon} alt='menu' width={40} height={40}/>

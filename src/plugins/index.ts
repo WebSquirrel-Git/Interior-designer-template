@@ -59,6 +59,7 @@ export const plugins: Plugin[] = [
     fields: {
       payment: false,
     },
+    defaultToEmail:'websquirrelcontact@gmail.com',
     formOverrides: {
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {

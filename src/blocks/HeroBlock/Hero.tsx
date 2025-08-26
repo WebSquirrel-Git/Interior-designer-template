@@ -5,17 +5,18 @@ import { ButtonLinkText } from '@/components/ui/buttons/ButtonLinkText'
 import Image from 'next/image'
 import LogoSM from 'public/assets/logo/logo-sm.svg'
 import { CustomImage } from '@/components/CustomImage/CustomImage'
-import { Media } from '@/payload-types'
+import { Information, Media } from '@/payload-types'
 
 export interface HeroBlockProps{
     header:string,
     subheader:string,
-    backgroundImage:Media
+    backgroundImage:Media,
+    informations:Information
 }
 
-export const HeroBlock = ({header,subheader,backgroundImage}:HeroBlockProps) =>{
+export const HeroBlock = ({header,subheader,backgroundImage,informations}:HeroBlockProps) =>{
 
-    return <div className='w-full h-screen bg-red-700 relative'>
+    return <div className='w-full h-screen bg-black relative'>
       <div className="absolute inset-0 bg-black/60 z-10" />
       <div className='absolute inset-0 z-20 flex flex-col sm:py-[20vh] pt-[20vh] pb-[50px] lg:px-28 sm:px-12 px-4 gap-8 items-start justify-end' style={{background: 'linear-gradient(180deg,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%)'}}>
         <div className='flex flex-col gap-[16px] xl:w-[800px] sm:w-[400px] w-auto'>
@@ -23,11 +24,11 @@ export const HeroBlock = ({header,subheader,backgroundImage}:HeroBlockProps) =>{
     <p className='xl:text-[20px] sm:text-[16px] text-[14px] font-medium'>{subheader}</p>
         </div>
         <span className='sm:block hidden'>
-        <ButtonLinkText url='/' label='Umów się na spotkanie'/>
+        <ButtonLinkText url='/kontakt' label='Umów się na spotkanie'/>
         </span>
         <div className='sm:hidden flex flex-col gap-[10px] self-center justify-center items-center'>
-        <ButtonLinkRounded telephone={111111111} type='phone' label='555 666 777'/>
-        <ButtonLinkRounded url='/' type='link' label='Zarezerwuj spotkanie'/>
+        {typeof informations !== 'number' && informations?.phone &&<ButtonLinkRounded telephone={Number(informations.phone)} type='phone' label={informations.phone}/>}
+        <ButtonLinkRounded url='/kontakt' type='link' label='Zarezerwuj spotkanie'/>
         <Image src={LogoSM} alt='logo' width={160}/>
         </div>
       </div>

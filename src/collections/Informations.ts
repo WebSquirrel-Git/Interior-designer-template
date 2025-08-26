@@ -22,8 +22,14 @@ export const Informations: CollectionConfig = {
       required: true,
     },
      {
-      name: 'adress',
-      label: 'Adres Firmy',
+      name: 'town',
+      label: 'Adres Firmy (miasto)',
+      type: 'text',
+      required: false,
+    },
+     {
+      name: 'street',
+      label: 'Adres Firmy(ulica - bez ul.)',
       type: 'text',
       required: false,
     },

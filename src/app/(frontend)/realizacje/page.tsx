@@ -9,7 +9,6 @@ const payload = await getPayload({ config: configPromise })
     limit: 1000,
     pagination: false,
   })
-  console.log(realizations.docs)
     return <div className='inset-0 z-20 flex flex-col sm:py-[20vh] pt-[20vh] pb-[50px] lg:px-28 sm:px-12 px-4 gap-8 items-start justify-end'>
       <h1 className='fixed lg:block hidden left-[-98px] top-1/2 -rotate-90 text-[64px] text-accentDark'>Realizacje</h1>
       <h1 className='lg:hidden flex text-accentDark'>Realizacje</h1>

@@ -22,7 +22,7 @@ export const OffertShowCaseItem=({images,backgroundImage,header,shortDescription
             <h3 className='font-semibold whitespace-nowrap' style={{background:'linear-gradient(90deg,rgba(234, 208, 141, 1) 0%, rgba(255, 255, 255, 1) 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent'}}>{header}</h3>
             <p>{shortDescription}</p>
         </div>
-        <ButtonLinkText label='Dowiedz się więcej' url='/'/>
+        <ButtonLinkText label='Dowiedz się więcej' url='/oferta'/>
     </div>
     <div className='md:flex hidden flex-row w-full gap-[2%] z-20 justify-end'>
         {images.map((image,i)=> <div key={i} className='relative w-[20%] h-full'>
