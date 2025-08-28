@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider, { CustomArrowProps } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,18 @@ import ForwardIcon from 'public/assets/icons/chevron-forward-accent.svg'
 import BackIcon from 'public/assets/icons/chevron-back-accent.svg'
 import Image from 'next/image';
 
+export function useWindowWidth() {
+  const [width, setWidth] = useState<number | null>(null)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    handleResize() // ustawia początkową wartość
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  return width
+}
 
 interface SliderComponentProps{
   rewievs:{ name:string,
@@ -17,6 +29,17 @@ interface SliderComponentProps{
  
 }
 export const SliderComponent=({rewievs}:SliderComponentProps)=>{
+
+ const width = useWindowWidth()
+
+  let slidesToShow = 1
+  let arrows = false
+  if (width && width >= 1536){
+slidesToShow = 3; arrows = true;
+  }  else if (width && width >= 1024){
+slidesToShow = 2;arrows = true;
+  } 
+
    function SampleNextArrow({ className, style, onClick }: CustomArrowProps) {
   return (
     <Image src={ForwardIcon} width={64} height={64} alt='forward' className={`${className} lg:!w-[64px] lg:!h-[64px] lg:!right-[-64px] !w-[32px] !h-[32px]` }
@@ -36,39 +59,18 @@ export const SliderComponent=({rewievs}:SliderComponentProps)=>{
  const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
+     slidesToShow,
     slidesToScroll: 1,
     initialSlide: 0,
     adaptiveHeight:false,
-    arrows:true,
+    arrows,
     autoplay: true,
     speed:500,
     autoplaySpeed: 5000,
     cssEase: "linear",
     nextArrow:<SampleNextArrow/>,
     prevArrow:<SampleBackArrow/>,
-      responsive: [
-        {
-      breakpoint: 1536, 
-      settings: {
-        slidesToShow: 2, 
-      },
-    },
-    {
-      breakpoint: 1024, 
-      settings: {
-        slidesToShow: 1, 
-      },
-    },
-     {
-      breakpoint: 640, 
-      settings: {
-         slidesToShow: 1,
-         arrows:false,
-         dots:true
-      },
-    }
-  ],
+      
   };
   
     return  <Slider {...settings} className='sm:w-full w-[100%] mx-auto'>
