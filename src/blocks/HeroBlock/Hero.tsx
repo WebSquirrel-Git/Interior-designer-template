@@ -32,7 +32,7 @@ export const HeroBlock = ({header,subheader,backgroundImage,informations}:HeroBl
         <Image src={LogoSM} alt='logo' width={160}/>
         </div>
       </div>
-      <CustomImage media={backgroundImage} size='xlarge' fill className='object-cover'/>
+      <CustomImage media={backgroundImage} size='xlarge' fill priority className='object-cover'/>
      
     </div>
 }
